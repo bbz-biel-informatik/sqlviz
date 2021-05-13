@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <% @page.visuals.each do |visual| %>
+    <div class="visual">
+      <h3><%= visual.name %></h3>
+      <%= render "visuals/#{visual.identifier}/frontend", visual: visual %>
+    </div>
+  <% end %>
+</div>

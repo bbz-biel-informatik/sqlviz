@@ -1,0 +1,8 @@
+<% visual.datasets.each do |dataset| %>
+  <table>
+    <tr><%= dataset.columns.map{ |c| "<th>#{c}</th>" }.join.html_safe %></tr>
+    <% dataset.rows.each do |row| %>
+      <tr><%= row.map{ |c| "<td>#{c}</td>" }.join.html_safe %></tr>
+    <% end %>
+  </table>
+<% end %>

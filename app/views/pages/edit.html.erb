@@ -1,0 +1,28 @@
+<%= simple_form_for @page do |f| %>
+  <%= f.input :name %>
+  <%= f.input :css %>
+<% end %>
+
+<div class="actions">
+  <%= render 'add_visual', page: @page %>
+</div>
+<% @page.visuals.each do |visual| %>
+  <div class="visual">
+    <%= visual.class.name %>
+    <%= simple_form_for [@page, visual.becomes(Visual)] do |f| %>
+      <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
+      <div id="queries">
+        <%= f.simple_fields_for :queries do |query| %>
+          <%= render 'query_fields', f: query %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association 'add query', f, :queries %>
+        </div>
+      </div>
+      <%= f.submit %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= render 'add_visual', page: @page %>
+  </div>
+<% end %>

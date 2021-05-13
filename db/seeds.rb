@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+p = Page.create!(name: 'Testpage')
+v = Visual.create!(page: p, name: 'Table', type: Visuals::Table)
+q = Query.create!(visual: v, query: 'SELECT name, id FROM pages');
