@@ -15,3 +15,6 @@ q1 = Query.create!(visual: v1, query: 'SELECT name, id FROM pages');
 
 v2 = Visual.create!(page: p, name: 'Bar', type: Visuals::Bar)
 q2 = Query.create!(visual: v2, query: 'SELECT name, id FROM pages');
+
+v3 = Visual.create!(page: p, name: 'Line', type: Visuals::Line)
+q3 = Query.create!(visual: v3, query: 'SELECT name, id, (100 - id) AS antiid FROM pages');

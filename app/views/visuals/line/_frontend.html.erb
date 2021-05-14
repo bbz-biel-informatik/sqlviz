@@ -4,7 +4,7 @@
   <script>
     const ctx_<%= dataset.query_id %> = document.getElementById('dataset_<%= dataset.query_id %>').getContext('2d');
     const chart_<%= dataset.query_id %> = new Chart(ctx_<%= dataset.query_id %>, {
-      type: 'bar',
+      type: 'line',
       data: {
           labels: <%= dataset.data.rows.transpose.first.to_json.html_safe %>,
           datasets: [

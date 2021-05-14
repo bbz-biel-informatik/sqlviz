@@ -15,7 +15,10 @@ class Visual < ApplicationRecord
 
   def datasets
     queries.order(:id).map do |query|
-      ActiveRecord::Base.connection.exec_query(query.query)
+      OpenStruct.new(
+        query_id: query.id,
+        data: ActiveRecord::Base.connection.exec_query(query.query)
+      )
     end
   end
 end
