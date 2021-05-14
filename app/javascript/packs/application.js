@@ -13,4 +13,11 @@ Turbolinks.start()
 ActiveStorage.start()
 
 require("jquery")
+require("jquery-ui")
 require("@nathanvda/cocoon")
+
+document.addEventListener('turbolinks:load', function(){
+  $('.sortable').sortable({
+    placeholder: "ui-state-highlight"
+  });
+});

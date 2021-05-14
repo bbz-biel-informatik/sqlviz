@@ -20,7 +20,7 @@ body {
   color: #222;
 }
 
-.visual {
+.visual, .ui-state-highlight {
   margin: 24px;
   padding: 24px;
   padding-top: 6px;
@@ -112,4 +112,11 @@ input[type=submit] {
 
 .input.text {
   vertical-align: top;
+}
+
+.ui-state-highlight {
+  height: 300px;
+  background: transparent;
+  border: 5px dashed #DDD;
+  box-shadow: none;
 }
