@@ -14,7 +14,7 @@ class Visual < ApplicationRecord
   end
 
   def datasets
-    queries.map do |query|
+    queries.order(:id).map do |query|
       ActiveRecord::Base.connection.exec_query(query.query)
     end
   end

@@ -7,5 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 p = Page.create!(name: 'Testpage')
-v = Visual.create!(page: p, name: 'Table', type: Visuals::Table)
-q = Query.create!(visual: v, query: 'SELECT name, id FROM pages');
+(1..20).each do |i|
+  Page.create!(name: "Testpage #{i}")
+end
+v1 = Visual.create!(page: p, name: 'Table', type: Visuals::Table)
+q1 = Query.create!(visual: v1, query: 'SELECT name, id FROM pages');
+
+v2 = Visual.create!(page: p, name: 'Bar', type: Visuals::Bar)
+q2 = Query.create!(visual: v2, query: 'SELECT name, id FROM pages');

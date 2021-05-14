@@ -1,0 +1,29 @@
+
+<% visual.datasets.each_with_index do |dataset, idx| %>
+  <canvas id="dataset<%= idx %>"></canvas>
+  <script>
+    const ctx = document.getElementById('dataset<%= idx %>').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: <%= dataset.rows.transpose.first.to_json.html_safe %>,
+          datasets: [
+            <%= dataset.rows.transpose[1..-1].map do |ds|
+              {
+                label: dataset.columns[1],
+                data: ds,
+                fill: false
+              }.to_json
+            end.join(",\n").html_safe %>
+          ]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+  </script>
+<% end %>
