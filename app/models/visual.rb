@@ -13,6 +13,10 @@ class Visual < ApplicationRecord
     Visual.subclasses
   end
 
+  def self.label
+    I18n.t(self.name.split("::").last.downcase)
+  end
+
   def datasets
     queries.order(:id).map do |query|
       OpenStruct.new(

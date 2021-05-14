@@ -14,9 +14,20 @@
  *= require_self
  */
 
+body {
+  background-color: #F3F3F3;
+  font-family: sans-serif;
+  color: #222;
+}
+
 .visual {
-  border: 1px solid blue;
-  padding: 12px;
+  margin: 24px;
+  padding: 24px;
+  padding-top: 6px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,.175);
+  border-radius: 8px;
+  /*box-shadow: 2px 2px 2px 2px #DDD;*/
 }
 
 .visual .title {
@@ -27,4 +38,75 @@
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagemeta, .content {
+  flex: 1;
+}
+
+div.input {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  width: 90%;
+}
+
+div.input label {
+  display: inline-block;
+  width: 30%;
+  box-sizing: border-box;
+}
+
+div.input input, div.input textarea {
+  width: 60%;
+  box-sizing: border-box;
+}
+
+.nested-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.visual_queries_query input[type=text] {
+  font-family: monospace;
+}
+
+input[type=submit] {
+  margin-top: 12px;
+  float: right;
+}
+
+.remove_fields, .add_fields {
+  padding: 6px;
+  border: none;
+  background-color: #DEDEDE;
+  text-decoration: none;
+  color: black;
+  display: inline;
+  width: 50px;
+  text-align: center;
+  box-sizing: border-box;
+  height: 2rem;
+}
+
+.add_fields {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.input.text {
+  vertical-align: top;
 }
