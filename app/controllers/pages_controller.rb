@@ -13,6 +13,11 @@ class PagesController < ApplicationController
     @page = current_user.pages.new
   end
 
+  def create
+    page = current_user.pages.create(page_params)
+    redirect_to edit_page_path(page)
+  end
+
   def edit
     @page = current_user.pages.find(params[:id])
   end
