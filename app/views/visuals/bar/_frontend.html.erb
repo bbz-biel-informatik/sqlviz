@@ -1,29 +1,9 @@
-
 <% visual.datasets.each do |dataset| %>
-  <canvas id="dataset_<%= dataset.query_id %>"></canvas>
+  <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
   <script>
-    const ctx_<%= dataset.query_id %> = document.getElementById('dataset_<%= dataset.query_id %>').getContext('2d');
-    const chart_<%= dataset.query_id %> = new Chart(ctx_<%= dataset.query_id %>, {
-      type: 'bar',
-      data: {
-          labels: <%= dataset.data.rows.transpose.first.to_json.html_safe %>,
-          datasets: [
-            <%= dataset.data.rows.transpose[1..-1].each_with_index.map do |ds, idx|
-              {
-                label: dataset.data.columns[idx + 1],
-                data: ds,
-                fill: false
-              }.to_json
-            end.join(",\n").html_safe %>
-          ]
-      },
-      options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
-  });
+    new Chartist.Bar('#dataset_<%= dataset.query_id %>', {
+      labels: <%= dataset.data.rows.transpose.first.to_json.html_safe %>,
+      series: <%= dataset.data.rows.transpose[1..-1].to_json.html_safe %>
+    });
   </script>
 <% end %>
