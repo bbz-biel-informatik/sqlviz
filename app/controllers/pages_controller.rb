@@ -2,23 +2,23 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def index
-    @pages = Page.all
+    @pages = current_user.pages.all
   end
 
   def show
-    @page = Page.find(params[:id])
+    @page = current_user.pages.find(params[:id])
   end
 
   def new
-    @page = Page.new
+    @page = current_user.pages.new
   end
 
   def edit
-    @page = Page.find(params[:id])
+    @page = current_user.pages.find(params[:id])
   end
 
   def update
-    page = Page.find(params[:id])
+    page = current_user.pages.find(params[:id])
     page.update(page_params)
     redirect_to edit_page_path(page)
   end

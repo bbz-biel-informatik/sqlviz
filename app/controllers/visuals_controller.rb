@@ -1,6 +1,6 @@
 class VisualsController < ApplicationController
   def update
-    visual = Visual.find(params[:id])
+    visual = current_user.visuals.find(params[:id])
     visual.update(visual_params)
     redirect_to edit_page_path(visual.page)
   end

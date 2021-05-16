@@ -36,5 +36,20 @@
         <div class="clearfix"></div>
       <% end %>
     </div>
+
+    <div class="visual">
+      <h3>Zugriffseinstellungen</h3>
+      <ul>
+        <% @page.users.each do |u| %>
+          <li><%= u.email %></li>
+        <% end %>
+      </ul>
+
+      <%= simple_form_for [@page, @page.memberships.build] do |f| %>
+        <%= f.input :email %>
+        <%= f.submit 'Hinzufügen' %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
   </div>
 </div>

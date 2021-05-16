@@ -1,4 +1,4 @@
-def InputsController < ApplicationController
+class SensorsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def create
