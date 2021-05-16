@@ -1,24 +1,8 @@
-# README
+# SQL Viz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Load data from CSV files
 
-Things you may want to cover:
+Run `rake csv:load` to load data from a CSV file into the database.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This command only prints the queries it would execute. To actually run the
+queries, prepend `WRITE=1`.
