@@ -53,12 +53,12 @@ ActiveRecord::Schema.define(version: 2021_05_16_142512) do
 
   create_table "visuals", force: :cascade do |t|
     t.bigint "page_id", null: false
-    t.string "name", null: false
+    t.string "name"
     t.string "type", null: false
+    t.integer "sort"
+    t.string "klass"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "klass"
-    t.integer "sort"
     t.index ["page_id"], name: "index_visuals_on_page_id"
   end
 
