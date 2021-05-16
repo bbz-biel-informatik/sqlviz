@@ -1,9 +1,9 @@
 <% visual.datasets.each do |dataset| %>
   <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
   <script>
-    new Chartist.Line('#dataset_<%= dataset.query_id %>', {
+    new Chartist.Pie('#dataset_<%= dataset.query_id %>', {
       labels: <%= dataset.data.rows.transpose.first.to_json.html_safe %>,
-      series: <%= dataset.data.rows.transpose[1..-1].to_json.html_safe %>
+      series: <%= dataset.data.rows.transpose[1].to_json.html_safe %>
     });
   </script>
 <% end %>

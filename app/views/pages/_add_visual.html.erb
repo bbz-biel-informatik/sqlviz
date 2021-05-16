@@ -1,3 +1,7 @@
 <% Visual.variants.each do |v| %>
-  <p>+ <%= v.label %></p>
+  <%= simple_form_for [@page, Visual.new] do |f| %>
+    <%= f.input :type, as: :hidden, input_html: { value: v } %>
+    <%= f.submit "+ #{v.label}" %>
+  <% end %>
+  <div class="clearfix"></div>
 <% end %>

@@ -5,11 +5,11 @@
       <%= render 'add_visual' %>
     </div>
   </div>
-  <div class="content sortable">
+  <div class="content sortable" data-url="<%= sort_page_visuals_path(@page) %>">
     <% @page.visuals.each do |visual| %>
-      <div class="visual">
+      <div class="visual" data-id="<%= visual.id %>">
         <h3><%= visual.class.label %></h3>
-        <%= simple_form_for [@page, visual.becomes(Visual)] do |f| %>
+        <%= simple_form_for [@page, visual.becomes(Visual)], remote: true do |f| %>
           <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
           <div id="queries">
             <%= f.simple_fields_for :queries do |query| %>
@@ -28,11 +28,31 @@
   </div>
   <div class="pagemeta">
     <div class="visual">
+      <h3>Vorschau</h3>
+      <%= link_to 'Vorschau &raquo;'.html_safe, page_path(@page), target: '_blank' %>
+    </div>
+
+    <div class="visual">
       <h3>Seiteneinstellungen</h3>
       <%= simple_form_for @page do |f| %>
         <%= f.input :name %>
         <%= f.input :css, input_html: { rows: 40 }, label: 'CSS' %>
         <%= f.submit 'Speichern' %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
+
+    <div class="visual">
+      <h3>Zugriffseinstellungen</h3>
+      <ul>
+        <% @page.users.each do |u| %>
+          <li><%= u.email %></li>
+        <% end %>
+      </ul>
+
+      <%= simple_form_for [@page, @page.memberships.build] do |f| %>
+        <%= f.input :email %>
+        <%= f.submit 'Hinzufügen' %>
         <div class="clearfix"></div>
       <% end %>
     </div>

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_200219) do
+ActiveRecord::Schema.define(version: 2021_05_16_142512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "page_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["page_id"], name: "index_memberships_on_page_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
 
   create_table "pages", force: :cascade do |t|
     t.string "name", null: false
@@ -30,17 +39,31 @@ ActiveRecord::Schema.define(version: 2021_05_14_200219) do
     t.index ["visual_id"], name: "index_queries_on_visual_id"
   end
 
-  create_table "visuals", force: :cascade do |t|
-    t.bigint "page_id", null: false
-    t.string "name", null: false
-    t.string "type", null: false
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "visuals", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.string "name"
+    t.string "type", null: false
+    t.integer "position"
     t.string "klass"
-    t.integer "sort"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["page_id"], name: "index_visuals_on_page_id"
   end
 
+  add_foreign_key "memberships", "pages"
+  add_foreign_key "memberships", "users"
   add_foreign_key "queries", "visuals"
   add_foreign_key "visuals", "pages"
 end
