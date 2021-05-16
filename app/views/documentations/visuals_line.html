@@ -12,3 +12,34 @@
 <p>
   Die Abfrage sollte immer zwei oder mehr Spalten liefern; die erste Spalte wird für die Beschriftung verwendet, alle weiteren werden als Linien gezeichnet.
 </p>
+
+<p>
+  Das Liniendiagramm kann gestylt werden, indem du die verschiedenen Linien ansprichst. Die erste Linie hat immer die
+  Klasse <code>.ct-series-a</code>, die zweite <code>.ct-series-b</code> und so weiter. Die Linien können dann über die Klasse
+  <code>.ct-line</code> angesteuert werden. Die Datenpunkte über die Klasse <code>.ct-point</code>. Du siehst die Klassen auch im
+  Quellcode der Website wenn du die Linien und Punkte mit dem Inspektor auswählst.
+
+  Du kannst die folgenden Eigenschaften der Linien und Punkte ändern:
+
+  <ul>
+    <li>`stroke`, die Farbe, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke/">Beispiele</a></li>
+    <li>`stroke-width`, die Balkenbreite, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-width/">Beispiele</a></li>
+    <li>`stroke-dasharray`, der Linienstil, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-dasharray/">Beispiele</a></li>
+    <li>`stroke-linecap`, die Linienenden, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-linecap/">Beispiele</a></li>
+  </ul>
+
+  <h4>Beispiel</h4>
+  <code><pre>
+    .ct-series-a .ct-line {
+      stroke: red;
+      stroke-width: 20px;
+      stroke-linecap: round;
+    }
+
+    .ct-series-a .ct-point {
+      stroke: red;
+      stroke-width: 20px;
+      stroke-linecap: square;
+    }
+  </pre></code>
+</p>

@@ -1,6 +1,6 @@
 class Visual < ApplicationRecord
   belongs_to :page
-  has_many :queries, inverse_of: :visual
+  has_many :queries, inverse_of: :visual, dependent: :destroy
 
   accepts_nested_attributes_for :queries, reject_if: :all_blank, allow_destroy: true
 
