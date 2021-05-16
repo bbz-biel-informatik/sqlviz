@@ -9,7 +9,7 @@
     <% @page.visuals.each do |visual| %>
       <div class="visual" data-id="<%= visual.id %>">
         <h3><%= visual.class.label %></h3>
-        <%= simple_form_for [@page, visual.becomes(Visual)], remote: true do |f| %>
+        <%= simple_form_for [@page, visual.becomes(Visual)] do |f| %>
           <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
           <div id="queries">
             <%= f.simple_fields_for :queries do |query| %>
