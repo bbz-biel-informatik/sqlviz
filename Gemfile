@@ -22,8 +22,9 @@ gem 'jbuilder', '2.11.2'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'simple_form'
-gem 'cocoon'
+gem 'simple_form', '5.1.0'
+gem 'cocoon', '1.2.15'
+gem 'devise', '4.8.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
