@@ -4,6 +4,8 @@ class Visual < ApplicationRecord
 
   accepts_nested_attributes_for :queries, reject_if: :all_blank, allow_destroy: true
 
+  default_scope { order(position: :asc) }
+
   def identifier
     self.class.name.split(':').last.underscore
   end

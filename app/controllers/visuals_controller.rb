@@ -10,12 +10,23 @@ class VisualsController < ApplicationController
   def update
     visual = current_user.visuals.find(params[:id])
     visual.update(visual_params)
-    redirect_to edit_page_path(visual.page)
+
+    respond_to do |format|
+      format.html { redirect_to edit_page_path(visual.page) }
+      format.js
+    end
+  end
+
+  def sort
+    ids = JSON.parse(params[:sort])
+    positions = ids.each_with_index.map { |id, idx| { position: idx } }
+
+    current_user.visuals.update(ids, positions)
   end
 
   private
 
   def visual_params
-    params.require(:visual).permit(:name, :type, queries_attributes: [:id, :query, :_destroy])
+    params.require(:visual).permit(:name, :type, :klass, queries_attributes: [:id, :query, :_destroy])
   end
 end

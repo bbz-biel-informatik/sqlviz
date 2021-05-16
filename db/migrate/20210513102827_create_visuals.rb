@@ -4,7 +4,7 @@ class CreateVisuals < ActiveRecord::Migration[6.1]
       t.references :page, null: false, foreign_key: true
       t.string :name
       t.string :type, null: false
-      t.integer :sort
+      t.integer :position
       t.string :klass
 
       t.timestamps

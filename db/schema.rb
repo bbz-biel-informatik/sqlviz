@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_142512) do
     t.bigint "page_id", null: false
     t.string "name"
     t.string "type", null: false
-    t.integer "sort"
+    t.integer "position"
     t.string "klass"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

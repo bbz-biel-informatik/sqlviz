@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#index'
   resources :pages do
-    resources :visuals
+    resources :visuals do
+      post :sort, on: :collection
+    end
     resources :memberships
   end
 

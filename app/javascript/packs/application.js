@@ -18,6 +18,22 @@ require("@nathanvda/cocoon")
 
 document.addEventListener('turbolinks:load', function(){
   $('.sortable').sortable({
-    placeholder: "ui-state-highlight"
+    placeholder: "ui-state-highlight",
+    stop: function(event, ui) {
+      const visuals = document.querySelectorAll('.sortable > div');
+      const ids = [];
+      visuals.forEach(v => ids.push(v.getAttribute('data-id')));
+
+      var fd = new FormData();
+      fd.append("sort", JSON.stringify(ids));
+
+      $.ajax({
+        url: document.querySelector('.sortable').getAttribute('data-url'),
+        type : "POST",
+        processData: false,
+        contentType: false,
+        data: fd
+      });
+    }
   });
 });
