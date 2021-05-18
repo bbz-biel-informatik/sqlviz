@@ -1,0 +1,42 @@
+<h3>Kuchendiagramm</h3>
+
+<p>
+  Mit dem Kuchendiagramm können Anteile am Gesamten dargstellt werden.
+</p>
+<p>
+  Eine Abfrage der Form <code>SELECT geschlecht, anzahl FROM todesfaelle;</code> liefert die folgende Darstellung:
+</p>
+
+<img src="/pie.png">
+
+<p>
+  Die Abfrage sollte immer genau zwei Spalten liefern; die erste Spalte wird für die Beschriftung verwendet, die zweite um den Anteil zu bestimmen.
+
+  Abfragen, die mehr als zwei Spalten liefern, funktionieren nicht!
+</p>
+
+<p>
+  Das Kuchendiagramm kann gestylt werden, indem du die verschiedenen Abschnitte ansprichst. Der erste Abschnitt hat immer die
+  Klasse <code>.ct-series-a</code>, der zweite <code>.ct-series-b</code> und so weiter. Die Abschnitte können dann über die Klasse
+  <code>.ct-slice-pie</code> angesteuert werden. Du siehst die Klassen auch im Quellcode der Website wenn du die Abschnitte mit dem
+  Inspektor auswählst.
+
+  Du kannst die folgenden Eigenschaften ändern:
+
+  <ul>
+    <li>`fill`, die Füllfarbe, siehe <a href="https://css-tricks.com/almanac/properties/f/fill/">Beispiele</a></li>
+    <li>`stroke`, die Farbe des Rahmens, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke/">Beispiele</a></li>
+    <li>`stroke-width`, die Balkenbreite, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-width/">Beispiele</a></li>
+    <li>`stroke-dasharray`, der Linienstil, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-dasharray/">Beispiele</a></li>
+    <li>`stroke-linecap`, die Linienenden, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-linecap/">Beispiele</a></li>
+  </ul>
+
+  <h4>Beispiel</h4>
+  <code><pre>
+    .ct-series-a .ct-slice-pie {
+      fill: blue;
+      stroke: white;
+      stroke-width: 4px;
+    }
+  </pre></code>
+</p>

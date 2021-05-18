@@ -17,6 +17,13 @@ class VisualsController < ApplicationController
     end
   end
 
+  def destroy
+    visual = current_user.visuals.find(params[:id])
+    visual.destroy
+
+    redirect_to edit_page_path(visual.page)
+  end
+
   def sort
     ids = JSON.parse(params[:sort])
     positions = ids.each_with_index.map { |id, idx| { position: idx } }

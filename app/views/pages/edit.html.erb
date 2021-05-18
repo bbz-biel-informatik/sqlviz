@@ -6,11 +6,20 @@
     </div>
   </div>
   <div class="content sortable" data-url="<%= sort_page_visuals_path(@page) %>">
+    <% if @page.visuals.empty? %>
+      <div class="visual" style="padding-top: 24px">
+        <em>Keine Visualisierungen. Erstelle im Menu links eine.</em>
+      </div>
+    <% end %>
     <% @page.visuals.each do |visual| %>
       <div class="visual" data-id="<%= visual.id %>">
         <h3><%= visual.class.label %></h3>
-        <%= simple_form_for [@page, visual.becomes(Visual)], remote: true do |f| %>
-          <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
+        <%= simple_form_for [@page, visual.becomes(Visual)] do |f| %>
+          <%= render "visuals/common/form_fields", f: f %>
+          <% if File.exist?(File.join(Rails.root, 'app', 'views', 'visuals', visual.identifier, '_form_fields.html.erb')) %>
+            <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
+          <% end %>
+          <h4>SQL-Abfragen</h4>
           <div id="queries">
             <%= f.simple_fields_for :queries do |query| %>
               <%= render 'query_fields', f: query %>
@@ -22,6 +31,7 @@
           </div>
           <%= f.submit 'Speichern' %>
           <div class="clearfix"></div>
+          <%= link_to 'löschen', page_visual_path(@page, visual), data: { confirm: 'Sicher?'}, method: :delete, class: 'destroy-link' %>
         <% end %>
       </div>
     <% end %>

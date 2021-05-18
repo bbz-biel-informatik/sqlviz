@@ -1,0 +1,39 @@
+<h3>Balkendiagramm</h3>
+
+<p>
+  Mit dem Balkendiagramm können zeitliche Verläufe dargstellt werden.
+</p>
+<p>
+  Eine Abfrage der Form <code>SELECT datum, temperatur FROM temperaturen;</code> liefert die folgende Darstellung:
+</p>
+
+<img src="/bar.png">
+
+<p>
+  Die Abfrage sollte immer zwei oder mehr Spalten liefern; die erste Spalte wird für die Beschriftung verwendet, alle weiteren werden als Balken gezeichnet.
+</p>
+
+<p>
+  Das Balkendiagramm kann gestylt werden, indem du die verschiedenen Balken ansprichst. Der erste Balken hat immer die
+  Klasse <code>.ct-series-a</code>, der zweite <code>.ct-series-b</code> und so weiter. Die Balken können dann über die Klasse
+  <code>.ct-bar</code> angesteuert werden. Du siehst die Klassen auch im Quellcode der Website
+  wenn du die Balken mit dem Inspektor auswählst.
+
+  Du kannst die folgenden Eigenschaften ändern:
+
+  <ul>
+    <li>`stroke`, die Farbe, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke/">Beispiele</a></li>
+    <li>`stroke-width`, die Balkenbreite, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-width/">Beispiele</a></li>
+    <li>`stroke-dasharray`, der Linienstil, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-dasharray/">Beispiele</a></li>
+    <li>`stroke-linecap`, die Linienenden, siehe <a href="https://css-tricks.com/almanac/properties/s/stroke-linecap/">Beispiele</a></li>
+  </ul>
+
+  <h4>Beispiel</h4>
+  <code><pre>
+    .ct-series-a .ct-bar {
+      stroke: red;
+      stroke-width: 20px;
+      stroke-linecap: round;
+    }
+  </pre></code>
+</p>

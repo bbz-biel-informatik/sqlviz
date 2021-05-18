@@ -120,3 +120,18 @@ input[type=submit] {
   border: 5px dashed #DDD;
   box-shadow: none;
 }
+
+.documentation {
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
+
+code {
+  background-color: #CCC;
+  line-height: 1.3rem;
+  padding: 0.3rem;
+}

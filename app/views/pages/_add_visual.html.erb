@@ -4,4 +4,5 @@
     <%= f.submit "+ #{v.label}" %>
   <% end %>
   <div class="clearfix"></div>
+  <%= info(v.name.gsub('::', '_').downcase) %>
 <% end %>
