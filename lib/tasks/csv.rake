@@ -24,7 +24,7 @@ namespace :csv do
   end
 
   # Wasserdaten Rhein
-  # CREATE TABLE data_rhein (id SERIAL PRIMARY KEY, start DATE NOT NULL, ende DATE NOT NULL, elektrische_leitfaehigkeit FLOAT, sauerstoffgehalt FLOAT, ph FLOAT, temperatur FLOAT);
+  # CREATE TABLE data_rhein (id SERIAL PRIMARY KEY, start TIMESTAMP NOT NULL, ende TIMESTAMP NOT NULL, elektrische_leitfaehigkeit FLOAT, sauerstoffgehalt FLOAT, ph FLOAT, temperatur FLOAT);
   task :rhein  do
     db = PG::Connection.new(host: 'sqlviz.bbz.cloud', port: 1234, dbname: 'sqlviz_postgres', user: 'postgres', password: pw)
     #db = PG::Connection.new(host: 'localhost', port: 5432, dbname: 'sqlviz_development', user: 'postgres', password: 'postgres')
@@ -46,7 +46,7 @@ namespace :csv do
 
 
   # Wasserdaten Aare
-  # CREATE TABLE data_aare (id SERIAL PRIMARY KEY, datum DATE NOT NULL, abfluss FLOAT, pegel FLOAT, sauerstoffgehalt FLOAT, temperatur FLOAT);
+  # CREATE TABLE data_aare (id SERIAL PRIMARY KEY, datum TIMESTAMP NOT NULL, abfluss FLOAT, pegel FLOAT, sauerstoffgehalt FLOAT, temperatur FLOAT);
   task :aare  do
     db = PG::Connection.new(host: 'sqlviz.bbz.cloud', port: 1234, dbname: 'sqlviz_postgres', user: 'postgres', password: pw)
     #db = PG::Connection.new(host: 'localhost', port: 5432, dbname: 'sqlviz_development', user: 'postgres', password: 'postgres')
@@ -123,7 +123,7 @@ namespace :csv do
   end
 
   # Luftqualitaet Zuerich 
-  # CREATE TABLE data_luftqualitaet (id SERIAL PRIMARY KEY, datum DATE NOT NULL, standort TEXT NOT NULL, parameter TEXT NOT NULL, einheit TEXT NOT NULL, wert INT);
+  # CREATE TABLE data_luftqualitaet (id SERIAL PRIMARY KEY, datum TIMESTAMP NOT NULL, standort TEXT NOT NULL, parameter TEXT NOT NULL, einheit TEXT NOT NULL, wert INT);
   task :luftqualitaet  do
     db = PG::Connection.new(host: 'sqlviz.bbz.cloud', port: 1234, dbname: 'sqlviz_postgres', user: 'postgres', password: pw)
     #db = PG::Connection.new(host: 'localhost', port: 5432, dbname: 'sqlviz_development', user: 'postgres', password: 'postgres')
