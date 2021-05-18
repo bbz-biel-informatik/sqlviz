@@ -44,6 +44,29 @@ namespace :csv do
     end
   end
 
+
+  # Wasserdaten Aare
+  # CREATE TABLE data_aare (id SERIAL PRIMARY KEY, datum DATE NOT NULL, abfluss FLOAT, pegel FLOAT, sauerstoffgehalt FLOAT, temperatur FLOAT);
+  task :aare  do
+    db = PG::Connection.new(host: 'sqlviz.bbz.cloud', port: 1234, dbname: 'sqlviz_postgres', user: 'postgres', password: pw)
+    #db = PG::Connection.new(host: 'localhost', port: 5432, dbname: 'sqlviz_development', user: 'postgres', password: 'postgres')
+    rows = CSV.read('/home/anja/Code/BBZ/sqlviz/samples/data_aare.csv', headers: true, col_sep: ",")
+    queries = []
+    rows.each do |row|
+      queries << "INSERT INTO data_aare (datum, abfluss, pegel, sauerstoffgehalt, temperatur) VALUES ('#{row['Zeitstempel']}', #{row['Abfluss'] || 'NULL'}, #{row['Pegel'] || 'NULL'}, #{row['Sauerstoff'] || 'NULL'}, #{row['Temperatur'] || 'NULL'});"
+    end
+
+    if ENV['WRITE'] == '1'
+      queries.each_slice(1000) do |q|
+        puts q.join("\n")
+        db.exec(q.join("\n"))
+      end
+    else
+      puts queries.join("\n")
+    end
+  end
+
+
   # Solardaten Schweiz
   # CREATE TABLE data_kanton (id SERIAL PRIMARY KEY, kuerzel TEXT NOT NULL, name TEXT NOT NULL);
   task :kanton  do
