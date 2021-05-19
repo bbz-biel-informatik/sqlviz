@@ -2,8 +2,8 @@
   <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
   <script>
     new Chartist.Pie('#dataset_<%= dataset.query_id %>', {
-      labels: <%= dataset.data.rows.transpose.first.to_json.html_safe %>,
-      series: <%= dataset.data.rows.transpose[1].to_json.html_safe %>
-    });
+      labels: <%= dataset.fields.to_json.html_safe %>,
+      series: <%= dataset.values.transpose[1].to_json.html_safe %>
+    }, { scaleMinSpace: 100 });
   </script>
 <% end %>

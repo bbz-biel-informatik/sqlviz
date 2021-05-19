@@ -20,11 +20,19 @@ class Visual < ApplicationRecord
   end
 
   def datasets
-    queries.order(:id).map do |query|
+    db_url = URI.parse(ENV['DATABASE_URL'] || 'postgres://postgres:3b4538099b2adc65c8a92a001da8ab20@localhost:5432/sqlviz_development')
+    db_url.user = 'readonly'
+    db_url.password = CGI::escape('9*94CL7AazS!ZNco*5tDUE2$9A#57rfQg#h%cF6i')
+    conn = PG.connect(db_url)
+    sets = queries.order(:id).map do |query|
+      res = conn.exec(query.query)
       OpenStruct.new(
         query_id: query.id,
-        data: ActiveRecord::Base.connection.exec_query(query.query)
+        fields: res.fields,
+        values: res.values
       )
     end
+    conn.close
+    return sets
   end
 end

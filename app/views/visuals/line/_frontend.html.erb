@@ -2,8 +2,14 @@
   <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
   <script>
     new Chartist.Line('#dataset_<%= dataset.query_id %>', {
-      labels: <%= dataset.data.rows.transpose.first.to_json.html_safe %>,
-      series: <%= dataset.data.rows.transpose[1..-1].to_json.html_safe %>
+      labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
+      series: <%= dataset.values.transpose[1..-1].to_json.html_safe %>
+    }, {
+      axisX: {
+        labelInterpolationFnc: function (value, index) {
+          return index % <%= dataset.values.count / 8 %> == 0 ? value: null;
+        }
+      }
     });
   </script>
 <% end %>
