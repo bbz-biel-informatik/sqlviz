@@ -34,6 +34,6 @@ class VisualsController < ApplicationController
   private
 
   def visual_params
-    params.require(:visual).permit(:name, :type, :klass, queries_attributes: [:id, :query, :_destroy])
+    params.require(:visual).permit(:name, :type, :klass, :description, queries_attributes: [:id, :query, :_destroy])
   end
 end
