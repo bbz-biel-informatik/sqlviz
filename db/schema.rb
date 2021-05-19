@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_150818) do
+ActiveRecord::Schema.define(version: 2021_05_19_151112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,11 +53,11 @@ ActiveRecord::Schema.define(version: 2021_05_19_150818) do
   end
 
   create_table "data_sensor_values", force: :cascade do |t|
-    t.bigint "sensor_id", null: false
+    t.bigint "data_sensor_id", null: false
     t.float "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sensor_id"], name: "index_data_sensor_values_on_sensor_id"
+    t.index ["data_sensor_id"], name: "index_data_sensor_values_on_data_sensor_id"
   end
 
   create_table "data_sensors", force: :cascade do |t|
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_150818) do
     t.index ["page_id"], name: "index_visuals_on_page_id"
   end
 
-  add_foreign_key "data_sensor_values", "data_sensors", column: "sensor_id"
+  add_foreign_key "data_sensor_values", "data_sensors"
   add_foreign_key "data_solar", "data_kanton", column: "kanton_id", name: "data_solar_kanton_id_fkey"
   add_foreign_key "data_todesfaelle", "data_kanton", column: "kanton_id", name: "data_todesfaelle_kanton_id_fkey"
   add_foreign_key "memberships", "pages"

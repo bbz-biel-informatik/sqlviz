@@ -6,7 +6,7 @@ class SensorsController < ApplicationController
     sensor_name = params[:sensor]
     sensor_value = params[:value]
 
-    sensor = Sensor.find_or_create_by(name: sensor_name)
-    sensor.sensor_values.create(value: sensor_value)
+    sensor = DataSensor.find_or_create_by(name: sensor_name)
+    sensor.data_sensor_values.create(value: sensor_value)
   end
 end
