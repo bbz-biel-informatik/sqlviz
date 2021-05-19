@@ -6,8 +6,8 @@
   <% @page.visuals.each do |visual| %>
     <div class="visual <%= visual.klass %>">
       <h3><%= visual.name %></h3>
-      <%= visual.description&.html_safe %>
       <%= render "visuals/#{visual.identifier}/frontend", visual: visual %>
+      <%= visual.description&.html_safe %>
     </div>
   <% end %>
 </div>
