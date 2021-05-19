@@ -10,10 +10,80 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_142512) do
+ActiveRecord::Schema.define(version: 2021_05_19_150818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "data_aare", id: :serial, force: :cascade do |t|
+    t.datetime "datum", null: false
+    t.float "abfluss"
+    t.float "pegel"
+    t.float "sauerstoffgehalt"
+    t.float "temperatur"
+  end
+
+  create_table "data_bern_zollikofen", id: :serial, force: :cascade do |t|
+    t.integer "jahr", null: false
+    t.integer "monat", null: false
+    t.float "temperatur", null: false
+    t.float "niederschlag", null: false
+  end
+
+  create_table "data_kanton", id: :serial, force: :cascade do |t|
+    t.text "kuerzel", null: false
+    t.text "name", null: false
+  end
+
+  create_table "data_luftqualitaet", id: :serial, force: :cascade do |t|
+    t.datetime "datum", null: false
+    t.text "standort", null: false
+    t.text "parameter", null: false
+    t.text "einheit", null: false
+    t.integer "wert"
+  end
+
+  create_table "data_rhein", id: :serial, force: :cascade do |t|
+    t.datetime "start", null: false
+    t.datetime "ende", null: false
+    t.float "elektrische_leitfaehigkeit"
+    t.float "sauerstoffgehalt"
+    t.float "ph"
+    t.float "temperatur"
+  end
+
+  create_table "data_sensor_values", force: :cascade do |t|
+    t.bigint "sensor_id", null: false
+    t.float "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sensor_id"], name: "index_data_sensor_values_on_sensor_id"
+  end
+
+  create_table "data_sensors", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "data_solar", id: :serial, force: :cascade do |t|
+    t.text "gemeinde", null: false
+    t.float "scenario1_roofsonly", null: false
+    t.float "scenario2_roofsonly", null: false
+    t.float "scenario3_roofsfacades", null: false
+    t.float "scenario4_roofsfacades", null: false
+    t.integer "kanton_id"
+  end
+
+  create_table "data_todesfaelle", id: :serial, force: :cascade do |t|
+    t.integer "jahr", null: false
+    t.integer "kalenderwoche", null: false
+    t.text "altersgruppe", null: false
+    t.text "geschlecht", null: false
+    t.integer "todesfaelle", null: false
+    t.integer "kanton_id"
+  end
 
   create_table "memberships", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -62,6 +132,9 @@ ActiveRecord::Schema.define(version: 2021_05_16_142512) do
     t.index ["page_id"], name: "index_visuals_on_page_id"
   end
 
+  add_foreign_key "data_sensor_values", "data_sensors", column: "sensor_id"
+  add_foreign_key "data_solar", "data_kanton", column: "kanton_id", name: "data_solar_kanton_id_fkey"
+  add_foreign_key "data_todesfaelle", "data_kanton", column: "kanton_id", name: "data_todesfaelle_kanton_id_fkey"
   add_foreign_key "memberships", "pages"
   add_foreign_key "memberships", "users"
   add_foreign_key "queries", "visuals"
