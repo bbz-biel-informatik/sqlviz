@@ -136,3 +136,15 @@ code {
   line-height: 1.3rem;
   padding: 0.3rem;
 }
+
+.legend {
+  margin-left: 48px;
+}
+
+.legend > svg {
+  height: 20px;
+}
+
+.legend .label {
+  font: normal 5px sans-serif;
+}

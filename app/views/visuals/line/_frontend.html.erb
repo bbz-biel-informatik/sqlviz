@@ -1,5 +1,8 @@
 <% visual.datasets.each do |dataset| %>
   <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
+  <% dataset.fields[1..-1].each_with_index do |field, idx| %>
+    <%= legend(field, idx).html_safe %>
+  <% end %>
   <script>
     new Chartist.Line('#dataset_<%= dataset.query_id %>', {
       labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
