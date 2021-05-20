@@ -2,7 +2,7 @@
   <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
   <script>
     new Chartist.Bar('#dataset_<%= dataset.query_id %>', {
-      labels: <%= dataset.fields.to_json.html_safe %>,
+      labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
       series: <%= dataset.values.transpose[1..-1].to_json.html_safe %>
     }, { scaleMinSpace: 100 });
   </script>
