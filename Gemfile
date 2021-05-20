@@ -25,6 +25,7 @@ gem 'jbuilder', '2.11.2'
 gem 'simple_form', '5.1.0'
 gem 'cocoon', '1.2.15'
 gem 'devise', '4.8.0'
+gem 'rubyXL', '3.4.17'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
