@@ -25,7 +25,8 @@ class Visual < ApplicationRecord
     db_url.password = CGI::escape('9*94CL7AazS!ZNco*5tDUE2$9A#57rfQg#h%cF6i')
     conn = PG.connect(db_url)
     sets = queries.order(:id).map do |query|
-      res = conn.exec(query.query)
+      Rails.logger.info "QUERY: #{query.with_limit}"
+      res = conn.exec(query.with_limit)
       OpenStruct.new(
         query_id: query.id,
         fields: res.fields,
