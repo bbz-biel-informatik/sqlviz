@@ -6,8 +6,14 @@
   <% @page.visuals.each do |visual| %>
     <div class="visual <%= visual.klass %>">
       <h3><%= visual.name %></h3>
-      <%= render "visuals/#{visual.identifier}/frontend", visual: visual %>
-      <%= visual.description&.html_safe %>
+      <% visual.datasets.each do |dataset| %>
+        <% if dataset.error %>
+          <em>Fehler im SQL: <pre><%= dataset.error.html_safe %></pre></em>
+        <% else %>
+          <%= render "visuals/#{visual.identifier}/frontend", dataset: dataset %>
+          <%= visual.description&.html_safe %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 </div>

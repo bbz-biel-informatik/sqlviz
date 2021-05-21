@@ -1,12 +1,10 @@
-<% visual.datasets.each do |dataset| %>
-  <div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
-  <% dataset.values.transpose.first.each_with_index do |field, idx| %>
-    <%= legend(field, idx).html_safe %>
-  <% end %>
-  <script>
-    new Chartist.Pie('#dataset_<%= dataset.query_id %>', {
-      labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
-      series: <%= dataset.values.transpose[1].to_json.html_safe %>
-    });
-  </script>
+<div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
+<% dataset.values.transpose.first.each_with_index do |field, idx| %>
+  <%= legend(field, idx).html_safe %>
 <% end %>
+<script>
+  new Chartist.Pie('#dataset_<%= dataset.query_id %>', {
+    labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
+    series: <%= dataset.values.transpose[1].to_json.html_safe %>
+  });
+</script>

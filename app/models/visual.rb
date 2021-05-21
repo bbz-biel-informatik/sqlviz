@@ -26,12 +26,18 @@ class Visual < ApplicationRecord
     conn = PG.connect(db_url)
     sets = queries.order(:id).map do |query|
       Rails.logger.info "QUERY: #{query.with_limit}"
-      res = conn.exec(query.with_limit)
-      OpenStruct.new(
-        query_id: query.id,
-        fields: res.fields,
-        values: res.values
-      )
+      begin
+        res = conn.exec(query.with_limit)
+        OpenStruct.new(
+          query_id: query.id,
+          fields: res.fields,
+          values: res.values
+        )
+      rescue PG::SyntaxError => e
+        OpenStruct.new(
+          error: e.message
+        )
+      end
     end
     conn.close
     return sets
