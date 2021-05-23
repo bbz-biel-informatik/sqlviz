@@ -25,5 +25,6 @@ class Query < ApplicationRecord
     puts ::Query.new(query: "SELECT * FROM bla;").with_limit
     puts ::Query.new(query: "SELECT * FROM bla limit 3").with_limit
     puts ::Query.new(query: "SELECT * FROM bla limit 3;").with_limit
+    puts ::Query.new(query: "SELECT  to_char(datum, 'YYYY'), AVG(temperatur) FROM data_aare  GROUP BY to_char(datum, 'YYYY');​").with_limit
   end
 end

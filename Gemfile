@@ -26,6 +26,8 @@ gem 'simple_form', '5.1.0'
 gem 'cocoon', '1.2.15'
 gem 'devise', '4.8.0'
 gem 'rubyXL', '3.4.17'
+gem 'sentry-ruby', '4.4.2'
+gem 'sentry-rails', '4.4.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
