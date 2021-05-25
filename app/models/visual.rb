@@ -33,7 +33,7 @@ class Visual < ApplicationRecord
           fields: res.fields,
           values: res.values
         )
-      rescue PG::SyntaxError => e
+      rescue StandardError => e
         OpenStruct.new(
           error: e.message
         )
