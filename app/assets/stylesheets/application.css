@@ -157,10 +157,10 @@ code {
   height: 130% !important;
 }
 
-.ct-chart-line .ct-label {
+.ct-chart-line .ct-label.ct-horizontal {
   transform: translate(-50%, 100%) rotate(-90deg);
 }
 
-.ct-chart-bar .ct-label {
+.ct-chart-bar .ct-label.ct-horizontal {
   transform: translate(0, 100%) rotate(-90deg);
 }
