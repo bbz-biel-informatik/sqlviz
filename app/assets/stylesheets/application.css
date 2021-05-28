@@ -148,3 +148,19 @@ code {
 .legend .label {
   font: normal 5px sans-serif;
 }
+
+.ct-chart {
+  margin-bottom: 60px;
+}
+
+.ct-golden-section {
+  height: 130% !important;
+}
+
+.ct-chart-line .ct-label {
+  transform: translate(-50%, 100%) rotate(-90deg);
+}
+
+.ct-chart-bar .ct-label {
+  transform: translate(0, 100%) rotate(-90deg);
+}
