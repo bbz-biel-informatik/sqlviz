@@ -153,7 +153,7 @@ code {
   margin-bottom: 60px;
 }
 
-.ct-golden-section {
+.ct-golden-section > svg {
   height: 130% !important;
 }
 
