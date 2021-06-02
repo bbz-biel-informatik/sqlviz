@@ -28,6 +28,8 @@ gem 'devise', '4.8.0'
 gem 'rubyXL', '3.4.17'
 gem 'sentry-ruby', '4.4.2'
 gem 'sentry-rails', '4.4.0'
+gem 'nokogiri', '1.11.6'
+gem 'parallel', '1.20.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
