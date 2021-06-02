@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_151301) do
+ActiveRecord::Schema.define(version: 2021_06_02_085720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,15 @@ ActiveRecord::Schema.define(version: 2021_05_19_151301) do
     t.integer "kanton_id"
   end
 
+  create_table "fields", force: :cascade do |t|
+    t.string "name"
+    t.string "kind"
+    t.bigint "visual_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["visual_id"], name: "index_fields_on_visual_id"
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "page_id", null: false
@@ -130,12 +139,14 @@ ActiveRecord::Schema.define(version: 2021_05_19_151301) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
+    t.text "form"
     t.index ["page_id"], name: "index_visuals_on_page_id"
   end
 
   add_foreign_key "data_sensor_values", "data_sensors"
   add_foreign_key "data_solar", "data_kanton", column: "kanton_id", name: "data_solar_kanton_id_fkey"
   add_foreign_key "data_todesfaelle", "data_kanton", column: "kanton_id", name: "data_todesfaelle_kanton_id_fkey"
+  add_foreign_key "fields", "visuals"
   add_foreign_key "memberships", "pages"
   add_foreign_key "memberships", "users"
   add_foreign_key "queries", "visuals"

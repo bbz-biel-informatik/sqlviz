@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :verify_authenticity_token, only: [:form]
 
   def index
     @pages = current_user.pages.all
@@ -26,6 +27,10 @@ class PagesController < ApplicationController
     page = current_user.pages.find(params[:id])
     page.update(page_params)
     redirect_to edit_page_path(page)
+  end
+
+  def form
+    
   end
 
   private

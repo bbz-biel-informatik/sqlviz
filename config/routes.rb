@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   resources :documentations, only: [:show]
   resources :pages do
+    post '/', to: 'pages#form'
     resources :visuals do
       post :sort, on: :collection
     end

@@ -19,16 +19,20 @@
           <% if File.exist?(File.join(Rails.root, 'app', 'views', 'visuals', visual.identifier, '_form_fields.html.erb')) %>
             <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
           <% end %>
-          <h4>SQL-Abfragen</h4>
-          <div id="queries">
-            <%= f.simple_fields_for :queries do |query| %>
-              <%= render 'query_fields', f: query %>
-            <% end %>
-            <div class="links">
-              <%= link_to_add_association '+', f, :queries %>
-              <div class="clearfix"></div>
+          <% if visual.identifier != 'form' %>
+            <h4>SQL-Abfragen</h4>
+            <div id="queries">
+              <%= f.simple_fields_for :queries do |query| %>
+                <%= render 'query_fields', f: query %>
+              <% end %>
+              <div class="links">
+                <%= link_to_add_association '+', f, :queries %>
+                <div class="clearfix"></div>
+              </div>
             </div>
-          </div>
+          <% else %>
+            <%= f.input :form, as: :text, label: 'HTML-Code', input_html: { rows: 4 } %>
+          <% end %>
           <%= f.submit 'Speichern' %>
           <div class="clearfix"></div>
           <%= link_to 'löschen', page_visual_path(@page, visual), data: { confirm: 'Sicher?'}, method: :delete, class: 'destroy-link' %>
