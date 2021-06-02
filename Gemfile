@@ -30,6 +30,7 @@ gem 'sentry-ruby', '4.4.2'
 gem 'sentry-rails', '4.4.0'
 gem 'nokogiri', '1.11.6'
 gem 'parallel', '1.20.1'
+gem 'clockwork', '2.0.4'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

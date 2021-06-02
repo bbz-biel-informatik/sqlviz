@@ -20,6 +20,7 @@ namespace :crupi do
     end
   end
 
+  # create table data_games (id serial primary key, date date not null, home text not null, guest text not null, result text not null, num int not null);
   task :import_games do
     db = PG::Connection.new(ENV['DATABASE_URL' || 'postgres://postgres:postgres@localhost:5432/sqlviz_development'])
     (0..500).each do |chunk|
