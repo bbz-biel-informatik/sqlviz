@@ -41,7 +41,7 @@ namespace :crupi do
       end
       queries = []
       games.each do |game|
-        queries << "INSERT INTO data_games (date, home, guest, result, num) VALUES ('#{game.date}', '#{game.home}', '#{game.guest}', '#{game.result}', #{game.num});"
+        queries << "INSERT INTO data_games (date, home, guest, result, num) VALUES (to_date('#{game.date}', 'DD.MM.YYYY'), '#{game.home}', '#{game.guest}', '#{game.result}', #{game.num});"
       end
       puts "Insert"
       queries.each_slice(1000) do |q|
