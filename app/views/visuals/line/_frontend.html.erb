@@ -9,7 +9,7 @@
   }, {
     axisX: {
       labelInterpolationFnc: function (value, index) {
-        return index % <%= dataset.values.count / 8 %> == 0 ? value: null;
+        return index % <%= [dataset.values.count / 8, 1].max %> == 0 ? value: null;
       }
     }
   });
