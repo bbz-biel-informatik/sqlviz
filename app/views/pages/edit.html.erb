@@ -1,0 +1,81 @@
+<div class="edit-page">
+  <div class="menu">
+    <div class="visual">
+      <h3>Elemente</h3>
+      <%= render 'add_visual' %>
+    </div>
+  </div>
+  <div class="content sortable" data-url="<%= sort_page_visuals_path(@page) %>">
+    <% if @page.visuals.empty? %>
+      <div class="visual" style="padding-top: 24px">
+        <em>Keine Visualisierungen. Erstelle im Menu links eine.</em>
+      </div>
+    <% end %>
+    <% @page.visuals.each do |visual| %>
+      <div class="visual" data-id="<%= visual.id %>">
+        <h3><%= visual.class.label %></h3>
+        <%= simple_form_for [@page, visual.becomes(Visual)] do |f| %>
+          <%= render "visuals/common/form_fields", f: f %>
+          <% if File.exist?(File.join(Rails.root, 'app', 'views', 'visuals', visual.identifier, '_form_fields.html.erb')) %>
+            <%= render "visuals/#{visual.identifier}/form_fields", f: f %>
+          <% end %>
+          <h4>SQL-Abfragen</h4>
+          <div id="queries">
+            <%= f.simple_fields_for :queries do |query| %>
+              <%= render 'query_fields', f: query %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association '+', f, :queries %>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <%= f.submit 'Speichern' %>
+          <div class="clearfix"></div>
+          <%= link_to 'löschen', page_visual_path(@page, visual), data: { confirm: 'Sicher?'}, method: :delete, class: 'destroy-link' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="pagemeta">
+    <div class="visual">
+      <h3>Vorschau</h3>
+      <%= link_to 'Vorschau &raquo;'.html_safe, page_path(@page), target: '_blank' %>
+    </div>
+
+    <div class="visual">
+      <h3>Seiteneinstellungen</h3>
+      <%= simple_form_for @page do |f| %>
+        <%= f.input :name %>
+        <%= f.input :css, input_html: { rows: 40 }, label: 'CSS' %>
+        <%= f.submit 'Speichern' %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
+
+    <div class="visual">
+      <h3>Zugriffseinstellungen</h3>
+      <ul>
+        <% @page.users.each do |u| %>
+          <li><%= u.email %></li>
+        <% end %>
+      </ul>
+
+      <%= simple_form_for [@page, @page.memberships.build] do |f| %>
+        <%= f.input :email %>
+        <%= f.submit 'Hinzufügen' %>
+        <div class="clearfix"></div>
+      <% end %>
+    </div>
+
+    <div class="visual">
+      <h3>Zugangsdaten Datenbank</h3>
+      <b>Typ</b> <input readonly size="40" value="PostgreSQL"><br>
+      <b>Host</b> <input readonly size="40" value="<%= @credentials.host %>"><br>
+      <b>Port</b> <input readonly size="40" value="<%= @credentials.port %>"><br>
+      <b>Datenbank</b> <input readonly size="40" value="<%= @credentials.path.gsub(/^\//, '') %>"><br>
+      <b>Username</b> <input readonly size="40" value="<%= @credentials.user %>"><br>
+      <b>Passwort</b> <input readonly size="40" value="<%= @credentials.password %>"><br>
+      <b>PSQL-Befehl</b> <input readonly size="40" value="psql -U <%= @credentials.user %> -d <%= @credentials.path.gsub(/^\//, '') %> -h <%= @credentials.host %> -p <%= @credentials.port %>"><br>
+    </div>
+  </div>
+</div>

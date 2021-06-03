@@ -1,0 +1,6 @@
+<table>
+  <tr><%= dataset.fields.map{ |c| "<th>#{c}</th>" }.join.html_safe %></tr>
+  <% dataset.values.each do |row| %>
+    <tr><%= row.map{ |c| "<td>#{c}</td>" }.join.html_safe %></tr>
+  <% end %>
+</table>

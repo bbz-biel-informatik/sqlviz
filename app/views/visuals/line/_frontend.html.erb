@@ -1,0 +1,19 @@
+<div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
+<% dataset.fields[1..-1].each_with_index do |field, idx| %>
+  <%= legend('line', field, idx).html_safe %>
+<% end %>
+<script>
+  const chart<%= dataset.query_id %> = new Chartist.Line('#dataset_<%= dataset.query_id %>', {
+    labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
+    series: <%= dataset.values.transpose[1..-1].to_json.html_safe %>
+  }, {
+    axisX: {
+      labelInterpolationFnc: function (value, index) {
+        return index % <%= dataset.values.count / 8 %> == 0 ? value: null;
+      }
+    }
+  });
+  chart<%= dataset.query_id %>.on('created', function() {
+    chart<%= dataset.query_id %>.container.style.paddingBottom = '80px';
+  });
+</script>

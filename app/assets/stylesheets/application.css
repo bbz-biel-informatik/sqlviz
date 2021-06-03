@@ -1,0 +1,166 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  background-color: #F3F3F3;
+  font-family: sans-serif;
+  color: #222;
+}
+
+.visual, .ui-state-highlight {
+  margin: 24px;
+  padding: 24px;
+  padding-top: 6px;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,.175);
+  border-radius: 8px;
+  /*box-shadow: 2px 2px 2px 2px #DDD;*/
+}
+
+.visual .title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 6px;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagemeta, .content {
+  flex: 1;
+}
+
+div.input {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+div.input label {
+  display: inline-block;
+  width: 20%;
+  box-sizing: border-box;
+}
+
+div.input input, div.input textarea {
+  width: 80%;
+  box-sizing: border-box;
+}
+
+.nested-fields {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.visual_queries_query input[type=text] {
+  font-family: monospace;
+}
+
+input[type=submit] {
+  margin-top: 12px;
+  float: right;
+}
+
+.remove_fields, .add_fields {
+  padding: 6px;
+  border: none;
+  background-color: #DEDEDE;
+  text-decoration: none;
+  color: black;
+  display: inline;
+  width: 50px;
+  text-align: center;
+  box-sizing: border-box;
+  height: 2rem;
+}
+
+.add_fields {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.input.text {
+  vertical-align: top;
+}
+
+.ui-state-highlight {
+  height: 300px;
+  background: transparent;
+  border: 5px dashed #DDD;
+  box-shadow: none;
+}
+
+.documentation {
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
+
+code {
+  background-color: #CCC;
+  line-height: 1.3rem;
+  padding: 0.3rem;
+}
+
+.legend {
+  margin-left: 48px;
+}
+
+.legend > svg {
+  height: 20px;
+}
+
+.legend .ct-line, .legend .ct-bar, .legend .ct-slice-pie {
+  stroke-width: inherit !important;
+}
+
+.legend .label {
+  font: normal 5px sans-serif;
+}
+
+.legend:nth-last-child(2) {
+  margin-bottom: 24px;
+}
+
+.ct-chart-line .ct-label.ct-horizontal {
+  transform: translate(-50%, 60px) rotate(-90deg);
+}
+
+.ct-chart-bar .ct-label.ct-horizontal {
+  transform: translate(0, 60px) rotate(-90deg);
+}

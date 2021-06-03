@@ -1,0 +1,13 @@
+<div class="ct-chart ct-golden-section" id="dataset_<%= dataset.query_id %>"></div>
+<% dataset.values.transpose.first.each_with_index do |field, idx| %>
+  <%= legend('slice-pie', field, idx).html_safe %>
+<% end %>
+<script>
+  const chart<%= dataset.query_id %> = new Chartist.Pie('#dataset_<%= dataset.query_id %>', {
+    labels: <%= dataset.values.transpose.first.to_json.html_safe %>,
+    series: <%= dataset.values.transpose[1].to_json.html_safe %>
+  });
+  chart<%= dataset.query_id %>.on('created', function() {
+    chart<%= dataset.query_id %>.container.style.paddingBottom = '80px';
+  });
+</script>
