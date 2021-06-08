@@ -116,6 +116,29 @@ namespace :csv do
     end
   end
 
+  task :geburten  do
+    db = PG::Connection.new(ENV['DATABASE_URL'])
+    file = Rails.root.join('samples', 'Geburten.csv')
+    rows = CSV.read(file, headers: true, col_sep: ",")
+    queries = []
+    rows.each do |row|
+      cid = row['Kanton-ID']
+      row.each_with_index do |col,idx|
+        next if idx < 2
+        jahr = 1968 + idx
+        queries << "INSERT INTO data_geburten (jahr, geburten, kanton_id) VALUES (#{jahr}, #{row[jahr.to_s]}, #{cid});"
+      end
+    end
+    if ENV['WRITE'] == '1'
+      queries.each_slice(1000) do |q|
+        puts q.join("\n")
+        db.exec(q.join("\n"))
+      end
+    else
+      puts queries.join("\n")
+    end
+  end
+
   task :luftqualitaet  do
     db = PG::Connection.new(ENV['DATABASE_URL'])
     (1983..2021).each do |year|

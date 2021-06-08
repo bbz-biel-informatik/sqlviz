@@ -49,6 +49,13 @@ CREATE TABLE data_todesfaelle (
   kanton_id INT REFERENCES data_kanton(id)
 );
 
+CREATE TABLE data_geburten (
+  id SERIAL PRIMARY KEY,
+  jahr INT NOT NULL,
+  geburten INT NOT NULL,
+  kanton_id INT REFERENCES data_kanton(id)
+);
+
 CREATE TABLE data_luftqualitaet (
   id SERIAL PRIMARY KEY,
   datum TIMESTAMP NOT NULL,
